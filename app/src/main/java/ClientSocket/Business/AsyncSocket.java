@@ -2,16 +2,16 @@ package ClientSocket.Business;
 
 import android.os.Looper;
 
+import ClientSocket.Business.Queue.SendDataQueue;
 import ClientSocket.Foundation.CClientSocket;
 import ClientSocket.Foundation.IClientSocket;
-import ClientSocket.Business.Queue.SendDataQueue;
 
 public class AsyncSocket implements IClientSocket {
-    private static AsyncSocket  _instance = null;
+    private static AsyncSocket _instance = null;
 
     private CClientSocket       _socket = null;
-    private SocketUIHandler     _uiHandler = null;
-    private Thread              _sendThread = null;
+    private SocketUIHandler _uiHandler = null;
+    private Thread _sendThread = null;
     private boolean             _shouldSendExit = false;
     private boolean             _isConnected = false;
 
@@ -33,11 +33,6 @@ public class AsyncSocket implements IClientSocket {
         _socket.setDelegate(this);
 
         _uiHandler = new SocketUIHandler(Looper.getMainLooper());
-    }
-
-    public void setPackageMaxSize(int packageMaxSize)
-    {
-        _socket.setPackageMaxSize(packageMaxSize);
     }
 
     public void setTimeout(int timeout)

@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 
-public class SocketUIHandler extends Handler{
+public class SocketUIHandler extends Handler {
 
     private ISocketDelegate _uiDelegate;
 
