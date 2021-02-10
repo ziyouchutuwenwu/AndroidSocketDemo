@@ -12,7 +12,7 @@ public class PkgRecv {
     private IFullData _fullDataDelegate;
 
     public PkgRecv(){
-        _savedData = new byte[]{0,6};
+        _savedData = new byte[]{};
     }
 
     public void setPkgHeaderOption(PkgHeaderOption pkgHeaderOption){
