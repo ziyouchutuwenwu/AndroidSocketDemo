@@ -1,18 +1,18 @@
 package cn.android.socketdemo;
 
-import ClientSocket.Business.AsyncSocket;
-import cn.android.socketdemo.codec.DecodeObject;
-import cn.android.socketdemo.codec.GenCodec;
-import cn.android.socketdemo.socketBroadcast.SocketBoardSender;
-import cn.android.socketdemo.socketBroadcast.SocketBroadReceiver;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+import ClientSocket.Business.AsyncSocket;
+import cn.android.socketdemo.codec.DecodeObject;
+import cn.android.socketdemo.codec.GenCodec;
+import cn.android.socketdemo.socketBroadcast.SocketBoardSender;
+import cn.android.socketdemo.socketBroadcast.SocketBroadReceiver;
 
-public class MainActivity extends AppCompatActivity implements IServiceSocketDelegate{
+public class MainActivity extends AppCompatActivity implements IServiceSocketDelegate {
 
     private TextView _textView = null;
     private AsyncSocket             _socket = null;
@@ -24,9 +24,9 @@ public class MainActivity extends AppCompatActivity implements IServiceSocketDel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        _textView = (TextView)findViewById(R.id.textView);
+        _textView = findViewById(R.id.textView);
 
-        Button clearButton = (Button)findViewById(R.id.clear_button);
+        Button clearButton = findViewById(R.id.clear_button);
         clearButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements IServiceSocketDel
             }
         });
 
-        Button connectButton = (Button)findViewById(R.id.connect_button);
+        Button connectButton = findViewById(R.id.connect_button);
         connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements IServiceSocketDel
             }
         });
 
-        Button sendButton = (Button)findViewById(R.id.send_button);
+        Button sendButton = findViewById(R.id.send_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

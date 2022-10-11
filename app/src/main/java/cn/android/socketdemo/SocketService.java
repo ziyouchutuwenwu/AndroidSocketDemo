@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+
 import ClientSocket.Business.AsyncSocket;
 import ClientSocket.Business.ISocketDelegate;
 import cn.android.socketdemo.socketBroadcast.SocketBoardSender;
@@ -27,7 +28,7 @@ public class SocketService extends Service implements ISocketDelegate {
     public int onStartCommand(Intent intent, int flags, int startId) {
         Log.v(TAG, "onStartCommand");
 
-        _socket.connect("192.168.88.234",9999);
+        _socket.connect("192.168.0.179",9999);
 
         return START_STICKY;
     }

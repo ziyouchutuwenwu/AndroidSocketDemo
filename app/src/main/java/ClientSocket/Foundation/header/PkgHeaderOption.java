@@ -16,9 +16,11 @@ public class PkgHeaderOption {
             case 2:
                 pkgHeaderOption.MaxDataSize = 0xFFFF;
                 pkgHeaderOption.HeaderFrameLenth = 2;
+                break;
             case 4:
                 pkgHeaderOption.MaxDataSize = 0x7FFFFFFF;
                 pkgHeaderOption.HeaderFrameLenth = 4;
+                break;
         }
 
         return pkgHeaderOption;

@@ -3,6 +3,7 @@ package ClientSocket.Foundation.recv;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.Socket;
+
 import ClientSocket.Foundation.EndianHelper.BytesConverter;
 import ClientSocket.Foundation.header.PkgHeaderOption;
 
@@ -83,8 +84,7 @@ public class PkgRecv {
 
                     byte[] pkg = new byte[dataLen];
                     System.arraycopy(totalData, pkgHeaderOption.HeaderSize, pkg, 0, dataLen);
-                    System.out.println(pkg.toString());
-                    if ( null != _fullDataDelegate) _fullDataDelegate.onFullDataReceived(totalData);
+                    if ( null != _fullDataDelegate) _fullDataDelegate.onFullDataReceived(pkg);
 
                     _savedData = new byte[totalData.length - frameLen];
                     System.arraycopy(totalData, frameLen, _savedData, 0, totalData.length - frameLen);

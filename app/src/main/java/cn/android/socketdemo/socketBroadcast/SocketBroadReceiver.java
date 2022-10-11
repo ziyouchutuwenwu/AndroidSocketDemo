@@ -1,11 +1,11 @@
 package cn.android.socketdemo.socketBroadcast;
+
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import cn.android.socketdemo.IServiceSocketDelegate;
 
 public class SocketBroadReceiver extends BroadcastReceiver {
-
     private IServiceSocketDelegate _serviceSocketDelegate = null;
 
     public SocketBroadReceiver(IServiceSocketDelegate delegate){
