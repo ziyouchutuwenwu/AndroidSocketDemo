@@ -13,7 +13,7 @@ import cn.android.socketdemo.socketBroadcast.SocketBoardSender;
 public class SocketService extends Service implements ISocketDelegate {
     private static final String TAG = "SocketService" ;
 
-    private AsyncSocket             _socket = null;
+    private AsyncSocket _socket = null;
 
     @Override
     public void onCreate() {
@@ -40,7 +40,6 @@ public class SocketService extends Service implements ISocketDelegate {
     @Override
     public IBinder onBind(Intent intent) {
         Log.v(TAG, "onBind");
-//        return null;
         return  new SocketServiceBinder();
     }
 
@@ -78,9 +77,8 @@ public class SocketService extends Service implements ISocketDelegate {
 
     @Override
     public void onReceiveData(byte[] data) {
-
         Context context = getApplicationContext();
-        NotificationHelper.makeSocketNotification(context, "收到socket数据", "hello", "点击查看socket消息", data);
+        NotificationHelper.makeSocketNotification(context, "收到socket数据", "点击查看socket消息", data);
 
         SocketBoardSender.sendReceiveDataBroadcast(this, data);
     }

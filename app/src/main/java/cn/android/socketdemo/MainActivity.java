@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements IServiceSocketDel
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startService(new Intent(MainActivity.this, SocketService.class));
+//        startService(new Intent(MainActivity.this, SocketService.class));
 
         _serviceConnection = new ServiceConnection() {
             @Override
@@ -99,7 +99,7 @@ public class MainActivity extends AppCompatActivity implements IServiceSocketDel
     @Override
     protected void onStop(){
         SocketBoardSender.unRegister(this, _socketBroadReceiver);
-
+        unbindService(_serviceConnection);
         super.onStop();
     }
 
