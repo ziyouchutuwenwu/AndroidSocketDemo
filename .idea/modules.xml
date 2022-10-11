@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AndroidSocketDemo.iml" filepath="$PROJECT_DIR$/AndroidSocketDemo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/AndroidSocketDemo.iml" filepath="$PROJECT_DIR$/.idea/modules/AndroidSocketDemo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidSocketDemo.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidSocketDemo.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidSocketDemo.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidSocketDemo.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidSocketDemo.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidSocketDemo.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/AndroidSocketDemo.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/AndroidSocketDemo.app.unitTest.iml" />
     </modules>
   </component>
 </project>
