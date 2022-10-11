@@ -23,12 +23,9 @@ public class CClientSocket implements IFullData
 
 
     public void init() {
-        _socket = new Socket();
-
+        _initSocket();
         _pkgHeaderOption = PkgHeaderOption.getPkgOptionWithHeaderSize(2);
-
         _pkgSender = new PkgSend();
-
         _pkgRecv = new PkgRecv();
         _pkgRecv.setPkgHeaderOption(_pkgHeaderOption);
         _pkgRecv.setFullDataCallback(this);
@@ -53,7 +50,9 @@ public class CClientSocket implements IFullData
 
         if ( !isConnected )
         {
+            _closeSocket();
             if (null != _callBack) _callBack.onConnectFail();
+            _initSocket();
         }
         else
         {
@@ -63,11 +62,7 @@ public class CClientSocket implements IFullData
 
     public void disConnect()
     {
-        try {
-            _socket.close();
-        } catch (IOException e) {
-        }
-
+        _closeSocket();
         if (null != _callBack) _callBack.onDisconnect();
     }
 
@@ -123,5 +118,17 @@ public class CClientSocket implements IFullData
     @Override
     public void onPkgRecvError() {
         if (null != _callBack) _callBack.onDisconnect();
+    }
+
+    private void _initSocket(){
+        _socket = new Socket();
+    }
+
+    private void _closeSocket(){
+        try {
+            _socket.close();
+            _socket = null;
+        } catch (IOException e) {
+        }
     }
 }

@@ -1,7 +1,10 @@
 package cn.android.socketdemo;
 
+import android.content.ComponentName;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -15,14 +18,32 @@ import cn.android.socketdemo.socketBroadcast.SocketBroadReceiver;
 public class MainActivity extends AppCompatActivity implements IServiceSocketDelegate {
 
     private TextView _textView = null;
-    private AsyncSocket             _socket = null;
-    private SocketBroadReceiver     _socketBroadReceiver = null;
+    private AsyncSocket _socket = null;
+    private SocketBroadReceiver _socketBroadReceiver = null;
+    private SocketService _socketService = null;
+    private ServiceConnection _serviceConnection = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startService(new Intent(MainActivity.this, SocketService.class));
+
+        _serviceConnection = new ServiceConnection() {
+            @Override
+            public void onServiceConnected(ComponentName name, IBinder service) {
+                _socketService = ((SocketService.SocketServiceBinder) service).getService();
+            }
+
+            @Override
+            public void onServiceDisconnected(ComponentName name) {}
+        };
+
+        // 调用 service 的 onBind
+        Intent intent = new Intent(this, SocketService.class);
+        bindService(intent, _serviceConnection, BIND_AUTO_CREATE);
 
         _textView = findViewById(R.id.textView);
 
@@ -38,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements IServiceSocketDel
         connectButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startService(new Intent(MainActivity.this, SocketService.class));
+                _socketService.connect("192.168.0.179",9999);
             }
         });
 

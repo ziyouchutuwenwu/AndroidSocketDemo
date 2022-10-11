@@ -3,9 +3,9 @@ package cn.android.socketdemo;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
 import android.util.Log;
-
 import ClientSocket.Business.AsyncSocket;
 import ClientSocket.Business.ISocketDelegate;
 import cn.android.socketdemo.socketBroadcast.SocketBoardSender;
@@ -24,19 +24,31 @@ public class SocketService extends Service implements ISocketDelegate {
         _socket.setDelegate(this);
     }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.v(TAG, "onStartCommand");
+//    @Override
+//    public int onStartCommand(Intent intent, int flags, int startId) {
+//        Log.v(TAG, "onStartCommand");
+//
+////        _socket.connect("192.168.0.179",9999);
+//
+//        return START_STICKY;
+//    }
 
-        _socket.connect("192.168.0.179",9999);
-
-        return START_STICKY;
+    public void connect(String server, int port){
+        _socket.connect(server, port);
     }
 
     @Override
     public IBinder onBind(Intent intent) {
         Log.v(TAG, "onBind");
-        return null;
+//        return null;
+        return  new SocketServiceBinder();
+    }
+
+    //1.service中有个类部类继承Binder，然后提供一个公有方法，返回当前service的实例。
+    public class  SocketServiceBinder extends Binder {
+        public SocketService getService(){
+            return SocketService.this;
+        }
     }
 
     @Override
